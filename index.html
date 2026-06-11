@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AEGIS TRADE | 負けない仕組みを、あなたの口座へ。</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'aegis-navy': '#0A0A0A',
+            'aegis-gold': '#00C896',
+            'aegis-light-gold': '#33D6B0',
+            'aegis-dark-gold': '#00A37A',
+            'aegis-bg': '#F8F8F8',
+            'aegis-text': '#333333',
+          },
+          fontFamily: {
+            sans: ['"Noto Sans JP"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* アコーディオンのスタイル */
+    .faq-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-in-out;
+    }
+    .faq-item.active .faq-content {
+      max-height: 200px; /* 十分な高さを確保 */
+    }
+    .faq-item.active .faq-icon {
+      transform: rotate(180deg);
+    }
+  </style>
+</head>
+<body class="bg-aegis-bg text-aegis-text font-sans antialiased overflow-x-hidden selection:bg-aegis-gold selection:text-white">
+
+  <!-- Navigation -->
+  <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300 py-4 px-6 md:px-12 bg-transparent text-white">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="#" class="text-2xl font-black tracking-widest text-aegis-gold">AEGIS TRADE</a>
+      
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex items-center space-x-8 font-medium text-sm tracking-wide">
+        <a href="#features" class="hover:text-aegis-gold transition">特徴</a>
+        <a href="#performance" class="hover:text-aegis-gold transition">実績</a>
+        <a href="#functions" class="hover:text-aegis-gold transition">機能</a>
+        <a href="#faq" class="hover:text-aegis-gold transition">FAQ</a>
+        <a href="#purchase" class="bg-gradient-to-r from-aegis-gold to-aegis-light-gold text-white px-6 py-2 rounded font-bold hover:shadow-[0_0_15px_rgba(0,200,150,0.5)] transition duration-300">今すぐ購入する</a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button id="hamburger" class="md:hidden focus:outline-none z-50 text-aegis-gold">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path id="hamburger-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden bg-aegis-navy absolute top-full left-0 w-full border-t border-gray-800 hidden">
+      <div class="flex flex-col px-6 py-6 space-y-4 text-center font-medium">
+        <a href="#features" class="mobile-link text-white py-2 border-b border-gray-800">特徴</a>
+        <a href="#performance" class="mobile-link text-white py-2 border-b border-gray-800">実績</a>
+        <a href="#functions" class="mobile-link text-white py-2 border-b border-gray-800">機能</a>
+        <a href="#faq" class="mobile-link text-white py-2 border-b border-gray-800">FAQ</a>
+        <a href="#purchase" class="bg-aegis-gold text-white py-3 mt-4 mobile-link inline-block rounded font-bold">今すぐ購入する</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
+    <!-- Background Image -->
+    <div class="absolute inset-0 z-0">
+      <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=1920&q=80" alt="トレード画面" class="w-full h-full object-cover object-center" />
+      <div class="absolute inset-0 bg-gray-900/80 backdrop-blur-[2px]"></div>
+    </div>
+
+    <!-- Content -->
+    <div class="relative z-10 w-full max-w-5xl mx-auto px-6 text-center mt-16 fade-in">
+      <p class="text-aegis-gold font-bold tracking-widest mb-4 text-sm md:text-base">自動売買システム【AEGIS】</p>
+      <h1 class="text-4xl md:text-6xl lg:text-7xl font-black text-white leading-tight mb-8 tracking-tight">
+        負けない仕組みを、<br>あなたの口座へ。
+      </h1>
+      <p class="text-gray-300 text-lg md:text-xl mb-12 leading-relaxed font-light max-w-2xl mx-auto">
+        25年の裁量経験から生まれた、守りの自動売買システム。<br class="hidden md:block">
+        プロの相場観をシステム化し、リスクを極限までコントロール。
+      </p>
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+        <a href="#purchase" class="text-center bg-aegis-gold text-white px-10 py-4 rounded font-bold text-lg hover:shadow-[0_0_20px_rgba(0,200,150,0.5)] transition duration-300">システムを導入する</a>
+        <a href="#performance" class="text-center border-2 border-white text-white px-10 py-4 rounded font-bold text-lg hover:bg-white/10 transition duration-300">実績データを見る</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Features Section -->
+  <section id="features" class="py-24 px-6 bg-white">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16 fade-in">
+        <h2 class="text-3xl md:text-4xl font-bold text-aegis-navy mb-4">選ばれる3つの理由</h2>
+        <div class="w-16 h-1 bg-aegis-gold mx-auto"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Feature 1 -->
+        <div class="bg-aegis-bg p-8 rounded border-t-4 border-aegis-gold shadow-sm hover:shadow-md transition-shadow fade-in">
+          <div class="text-aegis-gold mb-4">
+            <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
+          </div>
+          <h3 class="text-xl font-bold text-aegis-navy mb-3">25年の裁量経験を結集</h3>
+          <p class="text-gray-600 leading-relaxed text-sm">相場の酸いも甘いも知る専業トレーダーのロジックを完全プログラム化。単なるカーブフィッティングではない、本質的な優位性を持ったトレードを実現します。</p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="bg-aegis-bg p-8 rounded border-t-4 border-aegis-gold shadow-sm hover:shadow-md transition-shadow fade-in" style="transition-delay: 100ms;">
+          <div class="text-aegis-gold mb-4">
+            <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+          </div>
+          <h3 class="text-xl font-bold text-aegis-navy mb-3">守りを重視したリスク管理</h3>
+          <p class="text-gray-600 leading-relaxed text-sm">利益を追う以上に「資金を減らさない」ことに特化。相場の急変動を検知するフィルターと、独自のドローダウン制御機能で大切な資金を強固に守ります。</p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="bg-aegis-bg p-8 rounded border-t-4 border-aegis-gold shadow-sm hover:shadow-md transition-shadow fade-in" style="transition-delay: 200ms;">
+          <div class="text-aegis-gold mb-4">
+            <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+          </div>
+          <h3 class="text-xl font-bold text-aegis-navy mb-3">初心者でも使えるシンプル設計</h3>
+          <p class="text-gray-600 leading-relaxed text-sm">複雑なパラメータ設定は一切不要。推奨設定ファイルを読み込ませるだけで、プロと同じ環境が即座に構築可能。MT4の基本操作ができれば誰でも稼働できます。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Performance Section -->
+  <section id="performance" class="py-24 px-6 bg-aegis-navy text-white">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16 fade-in">
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">圧倒的な信頼を証明する数字</h2>
+        <div class="w-16 h-1 bg-aegis-gold mx-auto"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center fade-in">
+        <div class="p-6 border border-gray-700 rounded bg-gray-800/50">
+          <p class="text-gray-400 text-sm mb-2 font-bold tracking-wider">フォワードテスト期間</p>
+          <p class="text-5xl font-black text-aegis-gold">5<span class="text-2xl ml-1 text-white font-bold">年以上</span></p>
+          <p class="text-xs text-gray-500 mt-4">（2019年〜現在）</p>
+        </div>
+        
+        <div class="p-6 border border-gray-700 rounded bg-gray-800/50">
+          <p class="text-gray-400 text-sm mb-2 font-bold tracking-wider">最大ドローダウン</p>
+          <p class="text-5xl font-black text-aegis-gold">10<span class="text-2xl ml-1 text-white font-bold">%以下</span></p>
+          <p class="text-xs text-gray-500 mt-4">（コロナショック時も乗り越えた実績）</p>
+        </div>
+
+        <div class="p-6 border border-gray-700 rounded bg-gray-800/50">
+          <p class="text-gray-400 text-sm mb-2 font-bold tracking-wider">対応通貨ペア</p>
+          <p class="text-4xl font-black text-aegis-gold mt-2">XAUUSD<span class="block text-xl mt-1 text-white font-bold">（ゴールド専用）</span></p>
+          <p class="text-xs text-gray-500 mt-3">（ボラティリティを味方につける専用設計）</p>
+        </div>
+      </div>
+
+      <div class="mt-16 fade-in">
+        <img src="https://images.unsplash.com/photo-1612178991541-b48cc8e92a4d?auto=format&fit=crop&w=1200&q=80" alt="実績グラフイメージ" class="w-full h-64 object-cover rounded shadow-lg opacity-80 mix-blend-luminosity">
+        <p class="text-center text-xs text-gray-500 mt-4">※上記は過去の実績データに基づくイメージであり、将来の利益を保証するものではありません。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Functions Section -->
+  <section id="functions" class="py-24 px-6 bg-aegis-bg">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-16 fade-in">
+        <h2 class="text-3xl md:text-4xl font-bold text-aegis-navy mb-4">堅守速攻を実現する主要機能</h2>
+        <div class="w-16 h-1 bg-aegis-gold mx-auto"></div>
+      </div>
+
+      <div class="space-y-6">
+        <!-- Function 1 -->
+        <div class="flex items-start bg-white p-6 rounded shadow-sm fade-in border-l-4 border-aegis-navy">
+          <div class="bg-aegis-navy text-aegis-gold p-3 rounded mr-6 shrink-0">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold text-aegis-navy mb-2">完全自動エントリー・決済</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">チャートに張り付く必要はありません。独自のインジケーターロジックに基づき、システムが24時間市場を監視し、最適なタイミングで自動的に売買を実行します。</p>
+          </div>
+        </div>
+
+        <!-- Function 2 -->
+        <div class="flex items-start bg-white p-6 rounded shadow-sm fade-in border-l-4 border-aegis-navy">
+          <div class="bg-aegis-navy text-aegis-gold p-3 rounded mr-6 shrink-0">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold text-aegis-navy mb-2">ドローダウンカット機能</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">あらかじめ設定した損失額（％）に達した場合、強制的に全決済を行い稼働を停止します。想定外の相場変動による口座破綻を未然に防ぎます。</p>
+          </div>
+        </div>
+
+        <!-- Function 3 -->
+        <div class="flex items-start bg-white p-6 rounded shadow-sm fade-in border-l-4 border-aegis-navy">
+          <div class="bg-aegis-navy text-aegis-gold p-3 rounded mr-6 shrink-0">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold text-aegis-navy mb-2">証拠金維持率監視モニター</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">現在の証拠金維持率を常に計算し、一定水準を下回った場合は新規エントリーを制限。リスクを取りすぎない安全設計です。</p>
+          </div>
+        </div>
+
+        <!-- Function 4 -->
+        <div class="flex items-start bg-white p-6 rounded shadow-sm fade-in border-l-4 border-aegis-navy">
+          <div class="bg-aegis-navy text-aegis-gold p-3 rounded mr-6 shrink-0">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold text-aegis-navy mb-2">LINE/Discord リアルタイム通知</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">エントリー、決済、エラー情報を指定のツールへ即座に通知。外出先でもスマホ一つでシステムの稼働状況を把握できます。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" class="py-24 px-6 bg-white border-t border-gray-200">
+    <div class="max-w-3xl mx-auto">
+      <div class="text-center mb-16 fade-in">
+        <h2 class="text-3xl md:text-4xl font-bold text-aegis-navy mb-4">よくあるご質問</h2>
+        <div class="w-16 h-1 bg-aegis-gold mx-auto"></div>
+      </div>
+
+      <div class="space-y-4 fade-in">
+        <!-- Q1 -->
+        <div class="faq-item border border-gray-200 rounded">
+          <button class="w-full text-left px-6 py-4 font-bold text-aegis-navy flex justify-between items-center focus:outline-none bg-gray-50 hover:bg-gray-100">
+            <span>Q. FX初心者でも扱えますか？</span>
+            <svg class="faq-icon w-5 h-5 transition-transform text-aegis-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+          <div class="faq-content bg-white">
+            <p class="px-6 py-4 text-gray-600 text-sm border-t border-gray-100">A. はい、可能です。MT4の基本操作マニュアルと、推奨設定のパラメータファイルを同梱しております。複雑な設定は不要です。</p>
+          </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="faq-item border border-gray-200 rounded">
+          <button class="w-full text-left px-6 py-4 font-bold text-aegis-navy flex justify-between items-center focus:outline-none bg-gray-50 hover:bg-gray-100">
+            <span>Q. 証券会社の指定はありますか？</span>
+            <svg class="faq-icon w-5 h-5 transition-transform text-aegis-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+          <div class="faq-content bg-white">
+            <p class="px-6 py-4 text-gray-600 text-sm border-t border-gray-100">A. MT4が利用できる証券会社であれば基本的には稼働可能ですが、スプレッドの狭い特定の証券会社（Exness等）を推奨しております。</p>
+          </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="faq-item border border-gray-200 rounded">
+          <button class="w-full text-left px-6 py-4 font-bold text-aegis-navy flex justify-between items-center focus:outline-none bg-gray-50 hover:bg-gray-100">
+            <span>Q. 最低資金はいくらから始められますか？</span>
+            <svg class="faq-icon w-5 h-5 transition-transform text-aegis-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+          <div class="faq-content bg-white">
+            <p class="px-6 py-4 text-gray-600 text-sm border-t border-gray-100">A. マイクロ口座を利用すれば数万円から稼働可能ですが、安全な資金管理のため、スタンダード口座で10万円以上からのスタートを推奨しています。</p>
+          </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="faq-item border border-gray-200 rounded">
+          <button class="w-full text-left px-6 py-4 font-bold text-aegis-navy flex justify-between items-center focus:outline-none bg-gray-50 hover:bg-gray-100">
+            <span>Q. 絶対に儲かりますか？</span>
+            <svg class="faq-icon w-5 h-5 transition-transform text-aegis-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+          <div class="faq-content bg-white">
+            <p class="px-6 py-4 text-gray-600 text-sm border-t border-gray-100">A. 投資に「絶対」はありません。過去の実績は将来の利益を保証するものではありません。余剰資金での運用をお願いいたします。</p>
+          </div>
+        </div>
+
+        <!-- Q5 -->
+        <div class="faq-item border border-gray-200 rounded">
+          <button class="w-full text-left px-6 py-4 font-bold text-aegis-navy flex justify-between items-center focus:outline-none bg-gray-50 hover:bg-gray-100">
+            <span>Q. サポートはありますか？</span>
+            <svg class="faq-icon w-5 h-5 transition-transform text-aegis-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+          <div class="faq-content bg-white">
+            <p class="px-6 py-4 text-gray-600 text-sm border-t border-gray-100">A. はい、ご購入者様専用のLINEサポートをご用意しております。設置方法がわからない場合なども丁寧に対応いたします。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section id="purchase" class="py-24 px-6 bg-aegis-navy text-center relative overflow-hidden">
+    <div class="absolute inset-0 z-0 opacity-20">
+      <img src="https://images.unsplash.com/photo-1642543492481-44e81e3914a7?auto=format&fit=crop&w=1920&q=80" alt="背景" class="w-full h-full object-cover">
+    </div>
+    
+    <div class="relative z-10 max-w-4xl mx-auto fade-in">
+      <h2 class="text-3xl md:text-5xl font-black text-white mb-6">相場の波に、強固な盾を。</h2>
+      <p class="text-gray-300 mb-10 text-lg">販売本数には制限を設けております。予定数に達し次第、販売を終了いたします。</p>
+      
+      <div class="bg-gray-900/80 p-8 md:p-12 rounded-lg border border-aegis-gold max-w-2xl mx-auto backdrop-blur-sm">
+        <p class="text-aegis-gold font-bold mb-2">XAUUSD専用 自動売買システム</p>
+        <h3 class="text-4xl md:text-5xl font-black text-white mb-8 tracking-widest">AEGIS</h3>
+        
+        <div class="flex items-end justify-center gap-2 mb-8 text-white">
+          <span class="text-xl font-bold">一括払価格</span>
+          <span class="text-5xl font-black">¥49,800</span>
+          <span class="text-sm text-gray-400">（税込）</span>
+        </div>
+
+        <button class="w-full bg-gradient-to-r from-aegis-gold to-aegis-light-gold text-white py-4 md:py-5 rounded-md font-bold text-xl hover:shadow-[0_0_20px_rgba(0,200,150,0.6)] hover:from-aegis-light-gold hover:to-aegis-gold transition duration-300 mb-4 transform hover:-translate-y-1">
+          今すぐシステムを購入する
+        </button>
+        <p class="text-xs text-gray-400">クレジットカード / 銀行振込 対応</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-400 py-12 px-6 border-t border-gray-800 text-sm">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex flex-col md:flex-row justify-between items-center mb-8 pb-8 border-b border-gray-800 gap-6">
+        <div class="text-xl font-black tracking-widest text-gray-500">
+          AEGIS TRADE
+        </div>
+        <div class="flex space-x-6">
+          <a href="#" class="hover:text-white transition">特定商取引法に基づく表記</a>
+          <a href="#" class="hover:text-white transition">プライバシーポリシー</a>
+          <a href="#" class="hover:text-white transition">お問い合わせ</a>
+        </div>
+      </div>
+      
+      <div class="text-xs text-gray-500 leading-relaxed mb-6">
+        <p class="font-bold mb-2 text-gray-400">【投資に係るリスクおよび手数料について】</p>
+        <p>当商品は、著者と同じような利益が出ることを保証するものではありません。FX（外国為替証拠金取引）は価格変動リスクを伴い、また証拠金を上回る取引を行うことがありますので、場合によっては投資額を上回る損失を被る可能性があります。取引には取引業者の売買手数料がかかります。本商品に示された表現や再現性には個人差があり、必ずしも利益や効果を保証したものではございません。</p>
+      </div>
+      
+      <div class="text-center">
+        &copy; 2026 AEGIS TRADE. All Rights Reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Mobile Menu Toggle
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+    let menuOpen = false;
+
+    hamburger.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      if(menuOpen) {
+        mobileMenu.classList.remove('hidden');
+      } else {
+        mobileMenu.classList.add('hidden');
+      }
+    });
+
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        menuOpen = false;
+      });
+    });
+
+    // FAQ Accordion
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+      const button = item.querySelector('button');
+      button.addEventListener('click', () => {
+        const isActive = item.classList.contains('active');
+        
+        // Close all
+        faqItems.forEach(i => i.classList.remove('active'));
+        
+        // Open clicked if it wasn't active
+        if (!isActive) {
+          item.classList.add('active');
+        }
+      });
+    });
+
+    // Intersection Observer for Animations
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-in').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Sticky Navigation Color Change
+    const nav = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        nav.classList.add('bg-aegis-navy', 'shadow-md');
+        nav.classList.remove('bg-transparent');
+      } else {
+        nav.classList.add('bg-transparent');
+        nav.classList.remove('bg-aegis-navy', 'shadow-md');
+      }
+    });
+  </script>
+</body>
+</html>
